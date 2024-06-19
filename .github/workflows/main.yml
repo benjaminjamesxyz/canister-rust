@@ -1,0 +1,21 @@
+name: ICP Canister Build, Test & Deploy
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  #release build ICP canister using cargo for target wasm32-unknown-unknown
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
+          with:
+            toolchain: stable
+            target: wasm32-unknown-unknown
+            override: true
+      - name: Get package name
+        run: echo "package_name=$(basename "${PWD}")_backend" >> $GITHUB_ENV
+      - name: Build ICP canister
+        run: cargo build --release --package ${{ env.package_name }}
