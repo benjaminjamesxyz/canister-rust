@@ -16,6 +16,6 @@ jobs:
           target: wasm32-unknown-unknown
           override: true
       - name: Get package name
-        run: echo "package_name=$(basename "${PWD}")_backend" >> $GITHUB_ENV
+        run: echo "package_name=$(basename "${PWD}")-backend" >> $GITHUB_ENV
       - name: Build ICP canister
         run: cargo build --release --package ${{ env.package_name }}
