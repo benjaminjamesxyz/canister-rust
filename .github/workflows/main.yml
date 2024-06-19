@@ -15,8 +15,10 @@ jobs:
           toolchain: stable
           target: wasm32-unknown-unknown
           override: true
-      - name: Setting toolchain
+      - name: Adding toolchain
         run: rustup target add wasm32-unknown-unknown
+      - name: Adding target
+        run: rustc --print target-list
       - name: Get package name
         run: echo "package_name=$(basename "${PWD}")-backend" >> $GITHUB_ENV
       - name: Build ICP canister
