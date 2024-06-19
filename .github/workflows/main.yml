@@ -20,4 +20,4 @@ jobs:
       - name: Get package name
         run: echo "package_name=$(basename "${PWD}")-backend" >> $GITHUB_ENV
       - name: Build ICP canister
-        run: cargo build --release --target wasm32-unknow-unknow --package ${{ env.package_name }}
+        run: cargo build --release --target wasm32-unknown-unknown --package ${{ env.package_name }}
