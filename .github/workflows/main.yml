@@ -11,11 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          target: wasm32-unknown-unknown
-          override: true
+      - name: Setting toolchain
+        run: rustup target add wasm32-unknown-unknown
       - name: Get package name
         run: echo "package_name=$(basename "${PWD}")-backend" >> $GITHUB_ENV
       - name: Build ICP canister
-        run: cargo build --release --package ${{ env.package_name }}
+        run: cargo build --release --target wasm32-unknow-unknow --package ${{ env.package_name }}
