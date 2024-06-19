@@ -24,4 +24,4 @@ jobs:
       - name: Build ICP canister
         run: cargo build --release --target wasm32-unknown-unknown --package ${{ env.package_name }}
       - name: Generating candid files
-        run: candid-extractor "target/wasm32-unknown-unknown/release/${{ package_name }}.wasm" > "src/${package_name}/${{ package_name }}.did"
+        run: candid-extractor "target/wasm32-unknown-unknown/release/${{ env.package_name }}.wasm" > "src/${{ env.package_name }}/${{ env.package_name }}.did"
