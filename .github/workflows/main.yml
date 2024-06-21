@@ -36,7 +36,7 @@ jobs:
         uses: dfinity/setup-dfx@main
       - name: Import identity
         run: |
-          echo IDENTITY base64 -d > ./identity.pem
+          echo $IDENTITY | base64 -d > ./identity.pem
           sed -i 's/\\r\\n/\r\n/g' ./identity.pem
           dfx identity import simson ./identity.pem
       - name: Deploy
