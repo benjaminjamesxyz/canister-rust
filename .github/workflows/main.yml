@@ -34,7 +34,6 @@ jobs:
       - name: Install dfx
         uses: dfinity/setup-dfx@main
       - name: Import identity
-      - shell: bash
         env:
           IDENTITY: ${{ secrets.IDENTITY }}
           IDENTITY_NAME: ${{ secrets.IDENTITY_NAME }}
