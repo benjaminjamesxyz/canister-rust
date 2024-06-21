@@ -38,7 +38,7 @@ jobs:
         env:
           IDENTITY: ${{ vars.IDENTITY }}
         run: |
-          echo ${{ env.IDENTIRY }} | base64 -d > ./identity.pem
+          echo ${{ env.IDENTITY }} | base64 -d > ./identity.pem
           dfx identity import simson ./identity.pem --storage-mode=plaintext
       - name: Deploy
         run: |
