@@ -13,7 +13,7 @@ jobs:
       - uses:  actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: stable
-          target: wasm32-unknown-unknown
+          target: wasm-unknown-unknown
           cache: true
       - name: Adding target
         run: rustup target add wasm32-unknown-unknown
@@ -22,11 +22,12 @@ jobs:
       - name: Get package name
         run: echo "package_name=$(basename "${PWD}")-backend" >> $GITHUB_ENV
       - name: Build ICP canister
-        run: cargo build --release --target wasm32-unknown-unknown --package ${{ env.package_name }}
+        run: cargo build --release --target wasm-unknown-unknown --package ${{ env.package_name }}
       - name: Generating candid files
-        run: candid-extractor "target/wasm32-unknown-unknown/release/canister_rust_backend.wasm" > "src/${{ env.package_name }}/${{ env.package_nam }}.did"
+        run: candid-extractor "target/wasm-unknown-unknown/release/canister_rust_backend.wasm" > "src/${{ env.package_name }}/${{ env.package_nam }}.did"
 
   deploy:
+    # Deploying canister to ic network
     runs-on: ubuntu-latest
     needs: build
     steps:
