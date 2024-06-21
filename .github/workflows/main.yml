@@ -38,7 +38,7 @@ jobs:
         run: |
           echo $IDENTITY | base64 -d > ./identity.pem
           sed -i 's/\\r\\n/\r\n/g' ./identity.pem
-          dfx identity import simson ./identity.pem --disable-encryption
+          dfx identity import simson ./identity.pem --storage-mode=plaintext
       - name: Deploy
         run: dfx deploy --ic --no-wallet --identity=simson
     
