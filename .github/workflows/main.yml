@@ -25,3 +25,14 @@ jobs:
         run: cargo build --release --target wasm32-unknown-unknown --package ${{ env.package_name }}
       - name: Generating candid files
         run: candid-extractor "target/wasm32-unknown-unknown/release/canister_rust_backend.wasm" > "src/${{ env.package_name }}/${{ env.package_nam }}.did"
+
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ jobs.build.status == 'success' }}
+    needs: build
+    steps:
+      - name: Install dfx
+        uses: dfinity/setup-dfx@main
+      - name: Deploy
+        run: dfx deploy --ic
+    
