@@ -28,7 +28,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ jobs.build.status == 'success' }}
+    if: jobs.build.status == 'success'
     needs: build
     steps:
       - name: Install dfx
