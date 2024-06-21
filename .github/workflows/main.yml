@@ -34,7 +34,7 @@ jobs:
       - name: Install dfx
         uses: dfinity/setup-dfx@main
       - name: Create a new identity
-        run: dfx identity new
+        run: dfx identity new cicd
       - name: Deploy
         run: dfx deploy --ic
     
