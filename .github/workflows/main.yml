@@ -34,7 +34,7 @@ jobs:
       - name: Install dfx
         uses: dfinity/setup-dfx@main
       - name: Import identity
-        run: dfx identity import ${{ secrets.IDENTITY_NAME }} -- ${{ secrets.IDENTITY }}
+        run: dfx identity import ${{ secrets.IDENTITY_NAME }} ${{ secrets.IDENTITY }}
       - name: Deploy
         run: dfx deploy --ic
     
