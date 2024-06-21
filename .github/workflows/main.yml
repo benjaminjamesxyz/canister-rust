@@ -36,9 +36,7 @@ jobs:
         uses: dfinity/setup-dfx@main
       - name: Import identity
         run: |
-          dfx identity new
-          dfx identity import
-          echo $IDENTITY | base64 -d > ./identity.pem
+          echo ${{ vars.IDENTITY }} | base64 -d > ./identity.pem
           dfx identity import simson ./identity.pem --storage-mode=plaintext
       - name: Deploy
         run: |
