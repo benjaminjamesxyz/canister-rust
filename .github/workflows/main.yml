@@ -35,8 +35,10 @@ jobs:
       - name: Install dfx
         uses: dfinity/setup-dfx@main
       - name: Import identity
+        env:
+          IDENTITY: ${{ vars.IDENTITY }}
         run: |
-          echo "${{ vars.IDENTITY }}" | base64 -d > ./identity.pem
+          echo $IDENTIRY | base64 -d > ./identity.pem
           dfx identity import simson ./identity.pem --storage-mode=plaintext
       - name: Deploy
         run: |
