@@ -37,7 +37,7 @@ jobs:
         env:
           IDENTITY: ${{ secrets.IDENTITY }}
           IDENTITY_NAME: ${{ secrets.IDENTITY_NAME }}
-        run: dfx identity import ${{ IDENTITY_NAME }} ${{ IDENTITY }}
+        run: dfx identity import ${{ env.IDENTITY_NAME }} ${{ env.IDENTITY }}
       - name: Deploy
         run: dfx deploy --ic
     
