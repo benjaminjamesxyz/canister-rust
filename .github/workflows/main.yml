@@ -34,10 +34,11 @@ jobs:
       - name: Install dfx
         uses: dfinity/setup-dfx@main
       - name: Import identity
-        run: |
-          export IDENTITY_NAME=${{ secrets.IDENTITY_NAME }}
-          export IDENTITY=${{ secrets.IDENTITY }}
-          dfx identity import ${{ IDENTITY_NAME }} ${{ IDENTITY }}
+      - shell: bash
+        env:
+          IDENTITY: ${{ secrets.IDENTITY }}
+          IDENTITY_NAME: ${{ secrets.IDENTITY_NAME }}
+        run: dfx identity import ${{ IDENTITY_NAME }} ${{ IDENTITY }}
       - name: Deploy
         run: dfx deploy --ic
     
